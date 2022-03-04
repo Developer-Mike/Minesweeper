@@ -60,4 +60,8 @@ class Field:
         return False
 
     def tag(self):
+        if self.uncovered:
+            self.flagged = False
+            return
+
         self.flagged = not self.flagged

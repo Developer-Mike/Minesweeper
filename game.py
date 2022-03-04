@@ -12,6 +12,7 @@ def flatten(array):
 class Game:
     def __init__(self, surface, field_count, field_size):
         self.won = None
+        self.time = 0
         self.surface = surface
         self.field_count = field_count
         self.field_size = field_size
@@ -87,11 +88,22 @@ class Game:
         # Erase previous stuff
         pygame.draw.rect(self.surface, (0, 0, 0), pygame.Rect(0, self.info_render_y, self.surface.get_height(), self.surface.get_width()))
 
+        # Render flag count
         self.surface.blit(assets.FLAG, pygame.Rect(0, self.info_render_y, self.surface.get_height(), self.field_size))
 
         font = pygame.font.Font(None, 50)
         text = font.render(str(self.bomb_count - self.flag_count), True, (255, 255, 255))
         text_rect = text.get_rect()
         text_rect.left = self.field_size + 10
+        text_rect.centery = self.info_render_y + self.field_size / 2
+        self.surface.blit(text, text_rect)
+
+        # Render time
+        self.surface.blit(assets.FLAG, pygame.Rect(0, self.info_render_y, self.surface.get_height(), self.field_size))
+
+        font = pygame.font.Font(None, 50)
+        text = font.render(str(int(self.time)), True, (255, 255, 255))
+        text_rect = text.get_rect()
+        text_rect.right = self.surface.get_width() + 10
         text_rect.centery = self.info_render_y + self.field_size / 2
         self.surface.blit(text, text_rect)

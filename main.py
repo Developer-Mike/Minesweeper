@@ -31,3 +31,6 @@ while True:
 
     pygame.display.update()
     clock.tick(fps)
+
+    if game.won is None:
+        game.time += 1 / float(fps)

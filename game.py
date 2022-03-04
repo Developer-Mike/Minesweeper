@@ -47,7 +47,7 @@ class Game:
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN:
             left, middle, right = pygame.mouse.get_pressed()
-            if not right:
+            if not right and event.type == pygame.KEYDOWN:
                 right = event.key == pygame.K_m
 
             if left:
@@ -91,7 +91,7 @@ class Game:
         # Render flag count
         self.surface.blit(assets.FLAG, pygame.Rect(0, self.info_render_y, self.surface.get_height(), self.field_size))
 
-        font = pygame.font.Font(None, 50)
+        font = pygame.font.Font(None, self.field_size)
         text = font.render(str(self.bomb_count - self.flag_count), True, (255, 255, 255))
         text_rect = text.get_rect()
         text_rect.left = self.field_size + 10
@@ -101,9 +101,9 @@ class Game:
         # Render time
         self.surface.blit(assets.FLAG, pygame.Rect(0, self.info_render_y, self.surface.get_height(), self.field_size))
 
-        font = pygame.font.Font(None, 50)
+        font = pygame.font.Font(None, self.field_size)
         text = font.render(str(int(self.time)), True, (255, 255, 255))
         text_rect = text.get_rect()
-        text_rect.right = self.surface.get_width() + 10
+        text_rect.right = self.surface.get_width() - 10
         text_rect.centery = self.info_render_y + self.field_size / 2
         self.surface.blit(text, text_rect)

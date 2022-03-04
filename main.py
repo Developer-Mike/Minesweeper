@@ -1,10 +1,8 @@
-import time
-
 import pygame
 import assets
 from game import Game
 
-field_count = (20, 20)
+field_count = (15, 15)
 field_size = 40
 game_over_window_size = (500, 300)
 fps = 30

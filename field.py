@@ -59,7 +59,7 @@ class Field:
 
         return False
 
-    def tag(self):
+    def toggle_flag(self):
         if self.uncovered:
             self.flagged = False
             return

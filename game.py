@@ -1,12 +1,14 @@
 import random
-import numpy as np
 import pygame
 from field import Field
 import assets
 
 
 def flatten(array):
-    return list(np.array(array).flatten())
+    flat_array = []
+    for sub_array in array:
+        flat_array.extend(sub_array)
+    return flat_array
 
 
 class Game:
@@ -66,7 +68,7 @@ class Game:
                 field = self.get_field_hover()
 
                 if field is not None:
-                    field.tag()
+                    field.toggle_flag()
                     self.flag_count += 1 if field.flagged else -1
 
     def render(self):
